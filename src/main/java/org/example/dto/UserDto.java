@@ -18,8 +18,7 @@ public class UserDto {
     private String name;
 
     @Column(name = "company")
-    @Enumerated(EnumType.STRING)
-    private CompanyEnum company;
+    private String company;
 
     @Column(name = "department")
     private String department;
@@ -35,7 +34,7 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(String name, CompanyEnum company, String department, int salary, Sex sex) {
+    public UserDto(String name, String company, String department, int salary, Sex sex) {
         this.name = name;
         this.company = company;
         this.department = department;
@@ -60,11 +59,11 @@ public class UserDto {
         this.name = name;
     }
 
-    public CompanyEnum getCompany() {
+    public String getCompany() {
         return company;
     }
 
-    public void setCompany(CompanyEnum company) {
+    public void setCompany(String company) {
         this.company = company;
     }
 

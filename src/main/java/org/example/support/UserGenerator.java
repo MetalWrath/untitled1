@@ -16,7 +16,7 @@ public class UserGenerator {
     private static final String[] namesFemale = {"Maria", "Olga", "Tatiana", "Alexandra", "Marina", "Nataliya",
             "Kseniya", "Varvara", "Irina", "Darya", "Ulya"};
 
-
+    private static final String[] companyName = {"ARMTEK", "SBER", "ITEKO", "AUTORUS", "AG", "BLACKWATER"};
 
     private static final String[] department = {"IT", "HR", "Workers", "Marketing", "Sales", "AXO" };
 
@@ -49,13 +49,11 @@ public class UserGenerator {
     }
 
     private static UserDto createMale(){
-        return new UserDto(getString(namesMale), CompanyEnum.values()[new Random().nextInt(CompanyEnum.values().length)],
-                getString(department), getSalary(), Sex.MALE );
+        return new UserDto(getString(namesMale), getString(companyName), getString(department), getSalary(), Sex.MALE );
     }
 
     private static UserDto createFemale(){
-        return new UserDto(getString(namesFemale), CompanyEnum.values()[new Random().nextInt(CompanyEnum.values().length)]
-                , getString(department), getSalary(), Sex.FEMALE);
+        return new UserDto(getString(namesFemale), getString(companyName) , getString(department), getSalary(), Sex.FEMALE);
     }
 
 
