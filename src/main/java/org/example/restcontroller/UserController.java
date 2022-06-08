@@ -1,6 +1,8 @@
 package org.example.restcontroller;
 
+import org.example.dto.CompanyDto;
 import org.example.dto.UserDto;
+import org.example.service.CompanyService;
 import org.example.service.UserService;
 import org.example.support.UserGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,8 @@ import java.util.Locale;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private CompanyService companyService;
 
     @PostMapping("/users")
     public void createUser(@RequestBody UserDto user){
@@ -44,7 +47,14 @@ public class UserController {
     public String generateUser(){
         List<UserDto> userDtoList = UserGenerator.getUserList(100);
         for (UserDto userDto : userDtoList){
-            userService.saveUser(userDto);
+            try{
+                userService.saveUser(userDto);
+            }catch (Exception e){
+                CompanyDto companyDto = new CompanyDto(userDto.getCompany(), "",0 ,"");
+                companyService.saveCompany(companyDto);
+                userService.saveUser(userDto);
+            }
+
         }
         return "Users was created!";
     }
